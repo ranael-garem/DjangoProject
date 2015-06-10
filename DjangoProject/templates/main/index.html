@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>LibraryFeed</title>
+	</head>
+
+	<body>
+		<h1> Welcome To LibraryFeed</h1>
+		{% if user.is_authenticated %}
+		<h2> Hello {{ user.username }} </h2>
+		<a href="/main/logout/"> Logout</a>
+		{% else %}
+		<a href="/main/register/"> Register Here</a>
+		<a href="/main/login/"> Login Here</a>
+		{% endif %}
+
+
+	</body>
+</html>
