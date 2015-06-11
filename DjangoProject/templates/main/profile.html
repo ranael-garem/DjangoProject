@@ -7,7 +7,15 @@
 		<h1> Welcome To LibraryFeed</h1>
 			{% if user.is_authenticated %}
 			<h2> Hello {{ user.username }} </h2>
-			<a href="/main/profile/">Go To My Profile</a> </br>
+			<br>
+			<a href="/main/library/list/"> Show Me All Libraries</a>
+			<br>
+			{% if library %}
+			<a href="/main/library/{{ library.id }}"> My Library</a>
+			{% else %}
+			<a href="/main/library/new/"> Add a new Library</a>
+			{% endif %}
+			<br>
 			<a href="/main/logout/"> Logout</a>
 			<br>
 		{% else %}

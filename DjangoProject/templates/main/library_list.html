@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Libraries</title>
+</head>
+<body>
+	<h1> Browse Libraries </h1>
+	{% for library in object_list %}
+	<a href="/main/library/{{ library.id }}"><li> {{ library.name }}</li></a>
+	{% empty %}
+	<li> No Libraries Yet</li>
+	{% endfor %}
+	<br>
+	       <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/main/library/list/?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/main/library/list/?page={{ page_obj.next_page_number }}">Next</a>
+                {% endif %}
+            </span>
+        </div>
+        <br>
+	<h3>Menu</h3>
+	<a href="/main/profile/">Go Back To My Profile</a>
+	<br>
+	<a href="/main/library/{{library.id}}"> Go Back To My Library</a>
+	<br>
+	<a href="/main/logout/"> Logout</a>
+</body>
+</html>

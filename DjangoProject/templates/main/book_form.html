@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>LibraryFeed</title>
+	</head>
+
+	<body>
+		<h1> Add a new Book</h1>
+
+		<form id="new_book" method="post" action="">
+		{% csrf_token %}
+		{{form.errors}}
+		Name: <input type="text" name="name" value="" size="50"><br>
+		Author: <input type="text" name="author" value="" size="50"> 
+		<input type="hidden" name="library" value="{{lib_id}}" size="50"> 
+
+		<br>
+		<input type="submit" value="Submit">
+		</form>
+		<br>
+		<h3>Menu</h3>
+		<a href="/main/library/{{ lib_id }}"> Go Back </a>
+		<br>
+		<a href="/main/library/list/"> Show Me All Libraries</a>
+		<br>
+		<a href="/main/profile/">Go Back To My Profile</a>
+		<br>
+		<a href="/main/logout/"> Logout</a>
+	</body>
+</html>

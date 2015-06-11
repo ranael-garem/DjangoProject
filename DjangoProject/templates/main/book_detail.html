@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ object.name }}</title>
+</head>
+<body>
+	<h1> {{ object.name }} </h1>
+	<h4>Author : {{ object.author }}</h4>
+	<br>
+	<h3>Menu</h3>
+    {% if library.owner == user%}
+	<a href="delete/"> Delete This Book</a>
+	<br>
+	{% endif %}
+	<a href="/main/library/{{ library.id }}"> Go Back </a>
+	<br>
+	<a href="/main/library/list/"> Show Me All Libraries</a>
+	<br>
+	<a href="/main/profile/">Go Back To My Profile</a>
+	<br>
+	<a href="/main/logout/"> Logout</a>
+
+</body>
+
+</html>
