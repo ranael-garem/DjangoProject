@@ -11,17 +11,17 @@
 	    <input type="submit" value="Delete" />
 	</form>
 		<h3>Menu</h3>
+		{% if user.is_staff%}
 		<a href="/main/library/{{ library }}"> Go Back To My Library </a>
 		<br>
+		{% endif %}
 		<a href="/main/library/list/"> Show Me All Libraries</a>
 		<br>
 		<a href="/main/profile/">Go Back To My Profile</a>
 		<br>
+		<a href="/main/notification/"> Notifications </a>
+		<br>
 		<a href="/main/logout/"> Logout</a>
-
-
-
-
 </body>
 </html>
 

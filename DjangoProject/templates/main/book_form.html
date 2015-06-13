@@ -24,6 +24,16 @@
 		<br>
 		<a href="/main/profile/">Go Back To My Profile</a>
 		<br>
+		<a href="/main/notification/"> Notifications </a>
+		<br>
 		<a href="/main/logout/"> Logout</a>
+		{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 	</body>
 </html>

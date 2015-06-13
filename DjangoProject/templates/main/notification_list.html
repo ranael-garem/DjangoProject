@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Notifications</title>
+</head>
+<body>
+	<h1> Notifications</h1>
+	<h3> New Notifications </h3>
+	{% for notification in object_list %}
+	<p> {{ notification.message }}</p>
+	<a href="/main/book/{{ notification.book.slug }}/">Check {{ notification.book.name }}</a>
+	{% empty %}
+	<li> No New Notifications Yet</li>
+	{% endfor %}                                   
+
+	<br>
+		       <div class="pagination">
+            <span class="page-links">
+            <br>
+                {% if page_obj.has_previous %}
+                    <a href="/main/notification/?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/main/notification/?page={{ page_obj.next_page_number }}">Next</a>
+                {% endif %}
+            </span>
+        </div>
+        <h3> Old Notifications </h3>
+        	{% for notification in unread_list %}
+			<p> {{ notification.message }}</p>
+	<a href="/main/book/{{ notification.book.slug }}/">Check {{ notification.book.name }}</a>
+			{% empty %}
+			<li> No Notifications Yet</li>
+			{% endfor %}  
+	<br>
+
+	<h3>Menu</h3>
+	<a href="/main/profile/">Go Back To My Profile</a>
+	<br>
+	{% if user.is_staff%}
+	<a href="/main/library/{{library.id}}"> Go Back To My Library</a>
+	<br>
+	{% endif%}
+	<a href="/main/library/list/"> Show Me All Libraries</a>
+	<br>
+	<a href="/main/logout/"> Logout</a>
+</body>
+</html>

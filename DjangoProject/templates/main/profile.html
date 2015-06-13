@@ -8,6 +8,12 @@
 			{% if user.is_authenticated %}
 			<h2> Hello {{ user.username }} </h2>
 			<br>
+			{% if count == 1%}
+				<a href="/main/notification/"> {{ count }} Notification </a>
+			{% else %}
+				<a href="/main/notification/"> {{ count }} Notifications </a>
+			{% endif %}
+			<br>
 			<a href="/main/library/list/"> Show Me All Libraries</a>
 			<br>
 			{% if library %}
@@ -15,6 +21,10 @@
 			{% else %}
 			<a href="/main/library/new/"> Add a new Library</a>
 			{% endif %}
+			<br>
+			<a href="/messages/inbox/"> Inbox </a>
+			<br>
+			<a href="/messages/write/"> Send a message </a>
 			<br>
 			<a href="/main/logout/"> Logout</a>
 			<br>

@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h1> Browse Libraries </h1>
-	{% for library in object_list %}
+	{% for library in libraries %}
 	<a href="/main/library/{{ library.id }}"><li> {{ library.name }}</li></a>
 	{% empty %}
 	<li> No Libraries Yet</li>
@@ -25,11 +25,24 @@
             </span>
         </div>
         <br>
-	<h3>Menu</h3>
+     <h3>Menu</h3>
+	{% if user.is_authenticated %}
 	<a href="/main/profile/">Go Back To My Profile</a>
 	<br>
+	<a href="/main/notification/"> Notifications </a>
+	<br>
+	{% if library%}
 	<a href="/main/library/{{library.id}}"> Go Back To My Library</a>
 	<br>
+	{% endif %}
 	<a href="/main/logout/"> Logout</a>
+	{% else %}
+	<a href="/main/register/"> Register Here</a>
+	<br>
+	<a href="/main/login/"> Login Here</a>
+	<br>
+	<a href="/main/library/new/"> Create Your Own Library</a>
+	{% endif %}
+
 </body>
 </html>

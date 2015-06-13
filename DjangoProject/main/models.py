@@ -4,13 +4,6 @@ from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-
-    def _unicode_(self):
-        return self.user.username
-
-
 class Library(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
@@ -33,3 +26,13 @@ class Book(models.Model):
     def save(self, *args, **kwargs):
             self.slug = slugify(self.name)
             super(Book, self).save(*args, **kwargs)
+
+
+class Notification(models.Model):
+    message = models.CharField(max_length=300)
+    library = models.ForeignKey(Library, null=True)
+    book = models.ForeignKey(Book, null=True)
+    read = models.BooleanField(default=False)
+    owner = models.ForeignKey(User, null=True, related_name='owner')
+    slug = models.CharField(max_length=100, default='default')
+    user = models.ForeignKey(User, null=True, related_name='user')

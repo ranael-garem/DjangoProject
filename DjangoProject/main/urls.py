@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, url
-from main import views
 from main.views import (
     IndexView,
     ProfileView,
@@ -8,15 +7,22 @@ from main.views import (
     LibraryDetailView,
     BookDetailView,
     BookCreate,
-    BookDelete)
+    BookDelete,
+    NotificationListView,
+    RegisterView,
+    LogoutView,
+    LoginView,
+    BookUpdate,
+    LoginRequiredView)
 
 urlpatterns = patterns('',
                        url(r'^$', IndexView.as_view(), name='index'),
                        url(r'^profile/$', ProfileView.as_view(),
                            name='profile'),
-                       url(r'^register/$', views.register, name='register'),
-                       url(r'^login/$', views.user_login, name='login'),
-                       url(r'^logout/$', views.user_logout, name='logout'),
+                       url(r'^register/$', RegisterView.as_view(),
+                           name='register'),
+                       url(r'^login/$', LoginView.as_view(), name='login'),
+                       url(r'^logout/$', LogoutView.as_view(), name='logout'),
                        url(r'^library/list/$',
                            LibraryListView.as_view(), name='library-list'),
                        url(r'^library/new/$',
@@ -34,5 +40,12 @@ urlpatterns = patterns('',
                            BookDelete.as_view(),
                            name='book-delete'),
                        url(r'^books/edit/$',
-                           views.BookEdit, name='edit-books')
+                           BookUpdate.as_view(), name='edit-books'),
+                       url(r'^notification/$',
+                           NotificationListView.as_view(),
+                           name='notification'),
+                       url(r'^login_required/$',
+                           LoginRequiredView.as_view(), name='login'),
+
+
                        )

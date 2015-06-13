@@ -37,17 +37,36 @@
 
 
 	 <h3>Menu</h3>
-	 {% if object.owner.id == user.id%}
-	 <a href="/main/books/edit"> Edit Books</a>
- 	<br>
-	<a href={% url 'book-new' object.id %}> Add a Book</a>
-	<br>
+	 {% if user.is_authenticated %}
+	 	{% if object.owner.id == user.id%}
+			 <a href="/main/books/edit"> Edit Books</a>
+		 	<br>
+			<a href={% url 'book-new' object.id %}> Add a Book</a>
+			<br>
+		{% endif %}
+		<a href="/main/profile/">Go Back To My Profile</a>
+		<br>
+		<a href="/main/notification/"> Notifications </a>
+		<br>
+		<a href="/main/library/list/"> Show Me All Libraries</a>
+		<br>
+		<a href="/main/logout/"> Logout</a>
+	{% else %}
+		<a href="/main/register/"> Register Here</a>
+		<br>
+		<a href="/main/login/"> Login Here</a>
+		<br>
+	    <a href="/main/library/new/"> Create Your Own Library</a>
 	{% endif %}
-	<a href="/main/profile/">Go Back To My Profile</a>
-	<br>
-	<a href="/main/library/list/"> Show Me All Libraries</a>
-	<br>
-	<a href="/main/logout/"> Logout</a>
+
+	{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+    <script type="">alert("{{message}}")</script>
+    {% endfor %}
+</ul>
+{% endif %}
 
 
 

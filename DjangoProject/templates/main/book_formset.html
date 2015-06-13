@@ -10,7 +10,14 @@
 		    <table>
 		        {% for form in formset %}
 		        {% csrf_token %}
-		        {{ form }}
+		        {{form.id}}
+		        {{form.errors}}
+		        <h4>Edit  {{form.name.value}}</h4>
+		        Name: {{ form.name }} <br>
+		        Author: {{ form.author }}
+		        <input type="hidden" name="library" value="{{library.id}}" size="50"> 
+
+
 
 		        {% endfor %}
 		    </table>
@@ -24,6 +31,8 @@
 		<a href="/main/library/list/"> Show Me All Libraries</a>
 		<br>
 		<a href="/main/profile/">Go Back To My Profile</a>
+		<br>
+		<a href="/main/notification/"> Notifications </a>
 		<br>
 		<a href="/main/logout/"> Logout</a>
 
