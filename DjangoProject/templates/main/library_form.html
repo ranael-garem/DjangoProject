@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<title>LibraryFeed</title>
+	</head>
+
+	<body>
+		<h1> Add a new Library</h1>
+
+		<form id="new_library" method="post" action="">
+		{% csrf_token %}
+		{{ form.errors }}
+		Name: <input type="text" name="name" value="" size="50"><br>
+		Location: <input type="text" name="location" value="" size="50"> 
+		<br>
+		<input hidden type="text" name="owner" value={{ user.id }}>
+		<input type="submit" value="Submit">
+		</form>
+	</body>
+
+	<h3>Menu</h3>
+	<br>
+	<a href="/main/logout/"> Logout</a>
+</html>

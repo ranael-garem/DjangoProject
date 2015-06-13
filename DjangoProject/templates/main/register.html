@@ -12,10 +12,11 @@
 
 		<form id="user_form" method="post" action="/main/register/">
 		{% csrf_token %}
-		{{ user_form.as_p}}
+		{{ form.as_p}}
 
 		<input type="submit" name="submit" value="Register">
 		</form>
 		{% endif%}
+	    <h3> Or <a href="/main/login/"> Log In</a>
 	</body>
 </html>

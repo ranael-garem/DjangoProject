@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ object.name }}</title>
+</head>
+<body>
+	<h1> {{ object.name }} </h1>
+	<h4>Location: {{ object.location }}</h4>
+	<h4> Owner: {{ object.owner }}
+	<br>
+	<br>
+	{% if books%}
+	<h2> All Books </h2>
+	{% for book in books %}
+	<a href="/main/book/{{ book.slug }}"> {{book.name}} </a>
+	<br>
+	 {% endfor %}
+	 <br>
+	         <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/main/library/{{object.id}}/?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/main/library/{{object.id}}/?page={{ page_obj.next_page_number }}">Next</a>
+                {% endif %}
+            </span>
+        </div>
+
+	 {%else%}
+	 <p> There are no books available </p>
+ 	{% endif %}
+	 <br>
+
+
+	 <h3>Menu</h3>
+	 {% if user.is_authenticated %}
+	 	{% if object.owner.id == user.id%}
+			 <a href="/main/books/edit"> Edit Books</a>
+		 	<br>
+			<a href={% url 'book-new' object.id %}> Add a Book</a>
+			<br>
+		{% endif %}
+		<a href="/main/profile/">Go Back To My Profile</a>
+		<br>
+		<a href="/main/notification/"> Notifications </a>
+		<br>
+		<a href="/main/library/list/"> Show Me All Libraries</a>
+		<br>
+		<a href="/main/logout/"> Logout</a>
+	{% else %}
+		<a href="/main/register/"> Register Here</a>
+		<br>
+		<a href="/main/login/"> Login Here</a>
+		<br>
+	    <a href="/main/library/new/"> Create Your Own Library</a>
+	{% endif %}
+
+	{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+    <script type="">alert("{{message}}")</script>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+
+</body>
+</html>

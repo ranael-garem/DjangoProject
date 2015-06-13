@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ object.name }}</title>
+</head>
+<body>
+	<h1> {{ object.name }} </h1>
+	<h4>Author : {{ object.author }}</h4>
+	<br>
+	<h3>Menu</h3>
+	{% if user.is_authenticated %}
+	    {% if library.owner == user%}
+			<a href="delete/"> Delete This Book</a>
+			<br>
+		{% endif %}
+		<a href="/main/library/{{ library.id }}"> Go Back To {{ library.name }}</a>
+		<br>
+		<a href="/main/library/list/"> Show Me All Libraries</a>
+		<br>
+		<a href="/main/profile/">Go Back To My Profile</a>
+		<br>
+		<a href="/main/notification/"> Notifications </a>
+		<br>
+		<a href="/main/logout/"> Logout</a>
+	{% else %}
+	    <a href="/main/library/{{ library.id }}"> Go Back To {{ library.name }}</a>
+	    <br>
+		<a href="/main/register/"> Register Here</a>
+		<br>
+		<a href="/main/login/"> Login Here</a> <br>
+		<a href="/main/library/new/"> Create Your Own Library</a>
+
+	{% endif %}
+
+	{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+    <script type="">alert("{{message}}")</script></li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+</body>
+
+</html>

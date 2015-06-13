@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Libraries</title>
+</head>
+<body>
+	<h1> Browse Libraries </h1>
+	{% for library in libraries %}
+	<a href="/main/library/{{ library.id }}"><li> {{ library.name }}</li></a>
+	{% empty %}
+	<li> No Libraries Yet</li>
+	{% endfor %}
+	<br>
+	       <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/main/library/list/?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/main/library/list/?page={{ page_obj.next_page_number }}">Next</a>
+                {% endif %}
+            </span>
+        </div>
+        <br>
+     <h3>Menu</h3>
+	{% if user.is_authenticated %}
+	<a href="/main/profile/">Go Back To My Profile</a>
+	<br>
+	<a href="/main/notification/"> Notifications </a>
+	<br>
+	{% if library%}
+	<a href="/main/library/{{library.id}}"> Go Back To My Library</a>
+	<br>
+	{% endif %}
+	<a href="/main/logout/"> Logout</a>
+	{% else %}
+	<a href="/main/register/"> Register Here</a>
+	<br>
+	<a href="/main/login/"> Login Here</a>
+	<br>
+	<a href="/main/library/new/"> Create Your Own Library</a>
+	{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>LibraryFeed</title>
+	</head>
+
+	<body>
+		<h1> Welcome To LibraryFeed</h1>
+			{% if user.is_authenticated %}
+			<h2> Hello {{ user.username }} </h2>
+			<br>
+			{% if count == 1%}
+				<a href="/main/notification/"> {{ count }} Notification </a>
+			{% else %}
+				<a href="/main/notification/"> {{ count }} Notifications </a>
+			{% endif %}
+			<br>
+			<a href="/main/library/list/"> Show Me All Libraries</a>
+			<br>
+			{% if library %}
+			<a href="/main/library/{{ library.id }}"> My Library</a>
+			{% else %}
+			<a href="/main/library/new/"> Add a new Library</a>
+			{% endif %}
+			<br>
+			<a href="/messages/inbox/"> Inbox </a>
+			<br>
+			<a href="/messages/write/"> Send a message </a>
+			<br>
+			<a href="/main/logout/"> Logout</a>
+			<br>
+		{% else %}
+			<a href="/main/register/"> Register Here</a>
+			<a href="/main/login/"> Login Here</a>
+		{% endif %}
+
+
+	</body>
+</html>

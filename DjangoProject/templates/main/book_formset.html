@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Edit Books</title>
+</head>
+<body>
+	<h1>  Edit Books </h1>
+		<form method="post" action="">
+		    {{ formset.management_form }}
+		    <table>
+		        {% for form in formset %}
+		        {% csrf_token %}
+		        {{form.id}}
+		        {{form.errors}}
+		        <h4>Edit  {{form.name.value}}</h4>
+		        Name: {{ form.name }} <br>
+		        Author: {{ form.author }}
+		        <input type="hidden" name="library" value="{{library.id}}" size="50"> 
+
+
+
+		        {% endfor %}
+		    </table>
+		    <br>
+		    <input type="submit" value="Update"/>
+		</form>
+		<br>
+		<h3>Menu</h3>
+		<a href="/main/library/{{ library.id }}"> Go Back To Library </a>
+		<br>
+		<a href="/main/library/list/"> Show Me All Libraries</a>
+		<br>
+		<a href="/main/profile/">Go Back To My Profile</a>
+		<br>
+		<a href="/main/notification/"> Notifications </a>
+		<br>
+		<a href="/main/logout/"> Logout</a>
+
+</body>
+</html>
+
+
